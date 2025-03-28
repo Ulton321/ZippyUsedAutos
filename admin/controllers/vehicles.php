@@ -1,13 +1,16 @@
 <?php
-// Vehicles controller
-// This file will handle adding and deleting vehicles
+require_once('../models/vehicles_db.php');
 
-// Example code for handling vehicles
-function add_vehicle() {
-    // Code to add a new vehicle
-}
+class AdminVehiclesController {
+    public function index() {
+        $vehicles = VehiclesDB::getAllVehicles();
+        include('../views/vehicles_list.php');
+    }
 
-function delete_vehicle() {
-    // Code to delete a vehicle
+    public function delete() {
+        $vehicle_id = $_POST['vehicle_id'];
+        VehiclesDB::deleteVehicle($vehicle_id);
+        header('Location: /admin/vehicles');
+    }
 }
 ?>
